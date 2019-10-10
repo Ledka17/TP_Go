@@ -81,13 +81,10 @@ func Backspace(expr string) string {
 }
 
 func isNeedBackspace(expr string, i int) bool {
-	if (i == 0 || i == len(expr) - 1) && (expr[i] == '(' || expr[i] == ')') {
-		return true
+	if (expr[i] == '-' && (i == 0 || !isNum(string(expr[i - 1])))) || (isNum(string(expr[i]))) {
+		return false
 	}
-	if (i != 0 && i != len(expr) - 1) && (isFactor(string(expr[i])) || isSum(string(expr[i])) || expr[i] == '(' || expr[i] == ')') {
-		return true
-	}
-	return false
+	return true
 }
 
 func operate(num1 string, num2 string, op string) string {
